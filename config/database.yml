@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: client_queue_development
+  username: client_queue
+  password:
+  host: localhost
+  port: 5432
+
+test:
+  <<: *default
+  database: client_queue_test
+  username: client_queue
+  password: client_queue
+  host: localhost
+  port: 5432
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
